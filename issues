@@ -1,0 +1,5 @@
+Type of error: Load error, + Name Error: uninitalized constant, error occured outside of examples
+File path where error occured: # ./spec/Oystercard_spec.rb:1:in `<top (required)>'
+Line error: 1
+Error means: Don't have Oystercard class, no file is being loaded by the spec as I haven't created or required one.
+Ruby encountered a name of something it didn't recognise. The problem is the constant Oystercard not initilaizing. Has no idea where to find the class Oystercard.
