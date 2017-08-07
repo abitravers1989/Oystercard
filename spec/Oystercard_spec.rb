@@ -1,3 +1,8 @@
-describe Oystercard do
+require 'Oystercard'
 
-end 
+describe Oystercard do
+  it 'has a balance of zero' do
+    expect(subject.balance).to eq(0)
+  end
+
+end
