@@ -10,6 +10,7 @@ class Oystercard
 
  def touch_in
    raise 'Card in use' if @user == true
+   raise 'Insufficent funds avaliable' if @balance < 1
    @user = true
  end
 
@@ -23,7 +24,6 @@ class Oystercard
 
  def touch_out
    @user = false
-
  end
 
   def top_up(n)

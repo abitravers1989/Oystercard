@@ -30,28 +30,24 @@ describe Oystercard do
   it { is_expected.to respond_to(:touch_out) }
 
   it 'touching in will mean a user is in journey' do
+    subject.top_up(10)
     expect { subject.touch_in }.to change { subject.in_journey? }.to true
   end
 
   it 'touching out will mean a user isnt in a journey' do
+    subject.top_up(10)
     subject.touch_in
     expect { subject.touch_out }.to change { subject.in_journey? }.to false
   end
 
   it 'touch in is not allowed when user already in' do
+    subject.top_up(10)
     subject.touch_in
     expect { subject.touch_in }.to raise_error ("Card in use")
   end
 
+  it 'touch in is not allowed if there is an insufficent balance' do
+    expect { subject.touch_in }.to raise_error ("Insufficent funds avaliable")
   end
 
-
-
-def touch_in
-
-
-
-
-end
-#What are exceptions in Ruby? Why do they have messages associated with them?
-#How can you check an expression raises an error with RSpec? Why do you have to pass the code as a block to do this?
+  end
