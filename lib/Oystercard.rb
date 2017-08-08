@@ -7,6 +7,7 @@ class Oystercard
   end
 
   Max_Balance = 90
+  Default_value = 10 
 
  def touch_in
    raise 'Card in use' if @user == true

@@ -8,7 +8,8 @@ describe Oystercard do
   it { is_expected.to respond_to(:top_up).with(1).argument }
 
   it 'can top up balance' do
-    expect { subject.top_up(5) }.to change { subject.balance }.to 5
+    default = Oystercard::Default_value
+    expect { subject.top_up(default) }.to change { subject.balance }.to 10
   end
 
   it 'balance has a limit of £90' do
@@ -19,8 +20,9 @@ describe Oystercard do
   it { is_expected.to respond_to(:deduct).with(1).argument }
 
   it 'will deduct money from balance' do
-   subject.top_up(10)
-   expect(subject.deduct(5)).to eq 5
+   default = Oystercard::Default_value
+   subject.top_up(default)
+   expect(subject.deduct(default)).to eq 0
  end
 
   it { is_expected.to respond_to(:in_journey?) }
@@ -30,18 +32,21 @@ describe Oystercard do
   it { is_expected.to respond_to(:touch_out) }
 
   it 'touching in will mean a user is in journey' do
-    subject.top_up(10)
+    default = Oystercard::Default_value
+    subject.top_up(default)
     expect { subject.touch_in }.to change { subject.in_journey? }.to true
   end
 
   it 'touching out will mean a user isnt in a journey' do
-    subject.top_up(10)
+    default = Oystercard::Default_value
+    subject.top_up(default)
     subject.touch_in
     expect { subject.touch_out }.to change { subject.in_journey? }.to false
   end
 
   it 'touch in is not allowed when user already in' do
-    subject.top_up(10)
+    default = Oystercard::Default_value
+    subject.top_up(default)
     subject.touch_in
     expect { subject.touch_in }.to raise_error ("Card in use")
   end
