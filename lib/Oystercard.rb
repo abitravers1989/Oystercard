@@ -11,6 +11,10 @@ class Oystercard
     fail 'Card has reached limit, cannot be topped up' if @balance+n > Max_Balance
     @balance += n
   end
+
+  def deduct(n)
+    @balance-=n
+  end
 end
 
 =begin

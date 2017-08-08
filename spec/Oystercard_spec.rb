@@ -16,8 +16,12 @@ describe Oystercard do
     expect { subject.top_up(1) }.to raise_error ("Card has reached limit, cannot be topped up")
   end
 
+  it { is_expected.to respond_to(:deduct).with(1).argument }
 
-
+  it 'will deduct money from balance' do
+   subject.top_up(10)
+   expect(subject.deduct(5)).to eq 5
+ end
 end
 #What are exceptions in Ruby? Why do they have messages associated with them?
 #How can you check an expression raises an error with RSpec? Why do you have to pass the code as a block to do this?
