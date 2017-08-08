@@ -3,9 +3,28 @@ class Oystercard
 
   def initialize
     @balance = 0
+    @user = false
   end
 
   Max_Balance = 90
+
+ def touch_in
+   raise 'Card in use' if @user == true
+   @user = true
+ end
+
+ def in_journey?
+    if @user == true
+      true
+    else
+      false
+    end
+ end
+
+ def touch_out
+   @user = false
+
+ end
 
   def top_up(n)
     fail 'Card has reached limit, cannot be topped up' if @balance+n > Max_Balance
