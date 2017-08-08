@@ -25,7 +25,7 @@ class Oystercard
 
  def touch_out
    @user = false
-   deduct(5)
+   deduct(Default_value)
  end
 
 private

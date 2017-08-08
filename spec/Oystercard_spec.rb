@@ -58,6 +58,6 @@ describe Oystercard do
   it 'removes a balance when a user touches out' do
     default = Oystercard::Default_value
     subject.top_up(default)
-    expect { subject.touch_out }.to change { subject.balance }.by -5
+    expect { subject.touch_out }.to change { subject.balance }.by -10
   end
   end
