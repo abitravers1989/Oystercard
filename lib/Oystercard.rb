@@ -7,7 +7,7 @@ class Oystercard
   end
 
   Max_Balance = 90
-  Default_value = 10 
+  Default_value = 10
 
  def touch_in
    raise 'Card in use' if @user == true
@@ -25,8 +25,15 @@ class Oystercard
 
  def touch_out
    @user = false
+   deduct(5)
  end
 
+private
+ def deduct(number)
+   @balance-=number
+ end
+
+public
   def top_up(n)
     fail 'Card has reached limit, cannot be topped up' if @balance+n > Max_Balance
     @balance += n
